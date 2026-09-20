@@ -24,11 +24,11 @@ public class MainActivity extends Activity {
         btnSetup.setOnClickListener(v -> startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)));
         layout.addView(btnSetup);
 
+        SharedPreferences prefs = getSharedPreferences("BlockerPrefs", Context.MODE_PRIVATE);
+
         CheckBox cbAllowFirst = new CheckBox(this);
         cbAllowFirst.setText("Watch only the first short video");
-        cbAllowFirst.setChecked(true);
-
-        SharedPreferences prefs = getSharedPreferences("BlockerPrefs", Context.MODE_PRIVATE);
+        cbAllowFirst.setChecked(prefs.getBoolean("ALLOW_FIRST_SHORT", true));
         cbAllowFirst.setOnCheckedChangeListener((b, isChecked) ->
             prefs.edit().putBoolean("ALLOW_FIRST_SHORT", isChecked).apply()
         );
