@@ -11,11 +11,10 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 public class MainActivity extends Activity {
-    @pragma("Keep")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(50, 50, 50, 50);
@@ -28,9 +27,9 @@ public class MainActivity extends Activity {
         CheckBox cbAllowFirst = new CheckBox(this);
         cbAllowFirst.setText("Watch only the first short video");
         cbAllowFirst.setChecked(true);
-        
+
         SharedPreferences prefs = getSharedPreferences("BlockerPrefs", Context.MODE_PRIVATE);
-        cbAllowFirst.setOnCheckedChangeListener((b, isChecked) -> 
+        cbAllowFirst.setOnCheckedChangeListener((b, isChecked) ->
             prefs.edit().putBoolean("ALLOW_FIRST_SHORT", isChecked).apply()
         );
         layout.addView(cbAllowFirst);
